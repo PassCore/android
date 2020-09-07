@@ -1,0 +1,29 @@
+<resources>
+  <string name="app_name">Passcore</string>
+  <string name="generate">Generate</string>
+  <string name="pKey_0_hint">Master Key</string>
+  <string name="pKey_1_hint">Password</string>
+  <string name="pKey_2_hint">Enhance Field (Optional)</string>
+  <string name="isHard">Include characters</string>
+  <string name="ok">OK</string>
+  <string name="copy_to_clipboard">Copy</string>
+  <string name="alert_title">Information</string>
+  <string name="copy_success">Copy to clipboard successfully!</string>
+  <string name="null_return">Something happened! Maybe Standerd Str is empty?</string>
+  <string name="null_return_code">Error Code: 0x0001</string>
+  <string name="null_return_disc">Description: Method returns NULL or Empty. If the error persists, please contact the developer.</string>
+  <string name="error_detail">Error detail</string>
+  <string name="detail">Detail</string>
+  <string name="pass_front">Password:</string>
+  <string name="core_version">20200803</string>
+  <string name="version">Inner Version(Xamarin.Android O)</string>
+  <string name="clean_input">Clean input</string>
+  <string name="length_display">Current password length: </string>
+  <string name="isShort">Allow low-length password</string>
+  <string name="warning">Warning</string>
+  <string name="lowlength-warning">Low-length passwords are not recommended. Because it is extremely likely to pose a security risk. If you do not know what you are doing, please cancle this operation.</string>
+  <string name="confirm">Confirm</string>
+  <string name="cancle">Cancle</string>
+  <string name="random">Make random string</string>
+  <string name="your_passwd">Your password</string>
+</resources>
