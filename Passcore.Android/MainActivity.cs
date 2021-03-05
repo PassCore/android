@@ -2,6 +2,7 @@
 using System.Text;
 
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -23,7 +24,8 @@ namespace Passcore.Android
         Button BtnClear,
                  BtnRandom,
                  BtnGenerate,
-                 BtnSave;
+                 BtnSave,
+                 BtnSettings;
 
         CheckBox CkbIsCharRequired,
                  ChkIsWeakPasswd;
@@ -33,16 +35,19 @@ namespace Passcore.Android
         TextView TxvPasswdLength,
             TxvVersion;
 
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
+            #region Components Define
             BtnClear = FindViewById<Button>(Resource.Id.BtnClean);
             BtnGenerate = FindViewById<Button>(Resource.Id.BtnGenerate);
             BtnRandom = FindViewById<Button>(Resource.Id.BtnRandom);
             BtnSave = FindViewById<Button>(Resource.Id.BtnSave);
+            BtnSettings = FindViewById<Button>(Resource.Id.BtnSettings);
 
             EdtMasterKey = FindViewById<EditText>(Resource.Id.EdtMasterKey);
             EdtPassword = FindViewById<EditText>(Resource.Id.EdtPassword);
@@ -56,7 +61,9 @@ namespace Passcore.Android
             ChkIsWeakPasswd = FindViewById<CheckBox>(Resource.Id.ChkIsWeakPasswd);
 
             TxvVersion = FindViewById<TextView>(Resource.Id.TxvVersion);
+            #endregion
 
+            #region initialise UI value 
             SetSeekBar();
 
             TxvVersion.Text = $"{ProjectInfo.AppName}({ProjectInfo.AppVersion})\n" +
@@ -66,6 +73,7 @@ namespace Passcore.Android
 
             (EdtMasterKey.Text, EdtPassword.Text, EdtEnhanceField.Text) =
                 ConfigHelper.ParseConfigString(ConfigHelper.GetConfigString());
+            #endregion
 
             #region Evt
             SkbLength.ProgressChanged += SkbLength_ProgressChanged;
@@ -76,7 +84,16 @@ namespace Passcore.Android
             BtnGenerate.Click += BtnGenerate_Click;
             BtnRandom.Click += BtnRandom_Click;
             BtnSave.Click += BtnSave_Click;
+            BtnSettings.Click += BtnSettings_Click;
             #endregion
+
+            SharedActivity.MainActivity = this;
+        }
+
+        private void BtnSettings_Click(object sender, EventArgs e)
+        {
+            var intent = new Intent(this, typeof(SettingsActivity));
+            StartActivity(intent);
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -92,7 +109,6 @@ namespace Passcore.Android
         private void SetSeekBar()
         {
             SkbLength.Max = PasswordLengthHelper.GetMax(ChkIsWeakPasswd.Checked);
-            // FIXME: Length Text should be refresh!
         }
 
         private GenerateMode GetGenerateMode()
@@ -205,6 +221,17 @@ namespace Passcore.Android
         public int PasswdLength
         {
             get => PasswordLengthHelper.GetLength(SkbLength.Progress, ChkIsWeakPasswd.Checked);
+        }
+
+        private bool _isSecure = false;
+        public bool IsSecure
+        {
+            get => _isSecure;
+            set
+            {
+                ActivityHelper.SetSecureFlag(this, value);
+                _isSecure = value;
+            }
         }
 
     }

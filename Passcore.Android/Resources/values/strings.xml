@@ -1,5 +1,8 @@
 <resources>
   <string name="app_name">Passcore</string>
+  <string name="apply">Apply</string>
+  <string name="settings">Settings</string>
+  <string name="block_screenshot">Block Screenshot</string>
   <string name="generate">Generate</string>
   <string name="master_key">Master Key</string>
   <string name="password">Password</string>
@@ -22,9 +25,11 @@
   <string name="warning">Warning</string>
   <string name="lowlength-warning">Low-length passwords are not recommended. Because it is extremely likely to pose a security risk. If you do not know what you are doing, please cancle this operation.</string>
   <string name="confirm">Confirm</string>
+  <string name="security">Security</string>
   <string name="cancle">Cancle</string>
-  <string name="random">Make random string</string>
+  <string name="random">Generate random string</string>
   <string name="your_passwd">Your password</string>
   <string name="copyright">Copyright © 2021 Passcore Team</string>
   <string name="result">Result</string>
+  <string name="save">Save</string>
 </resources>
