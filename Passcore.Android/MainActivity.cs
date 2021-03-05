@@ -22,7 +22,8 @@ namespace Passcore.Android
 
         Button BtnClear,
                  BtnRandom,
-                 BtnGenerate;
+                 BtnGenerate,
+                 BtnSave;
 
         CheckBox CkbIsCharRequired,
                  ChkIsWeakPasswd;
@@ -41,6 +42,7 @@ namespace Passcore.Android
             BtnClear = FindViewById<Button>(Resource.Id.BtnClean);
             BtnGenerate = FindViewById<Button>(Resource.Id.BtnGenerate);
             BtnRandom = FindViewById<Button>(Resource.Id.BtnRandom);
+            BtnSave = FindViewById<Button>(Resource.Id.BtnSave);
 
             EdtMasterKey = FindViewById<EditText>(Resource.Id.EdtMasterKey);
             EdtPassword = FindViewById<EditText>(Resource.Id.EdtPassword);
@@ -60,6 +62,8 @@ namespace Passcore.Android
             TxvVersion.Text = $"{ProjectInfo.AppName}({ProjectInfo.AppVersion})\n" +
                 $"{Copyright}";
 
+            (EdtMasterKey.Text, EdtPassword.Text, EdtEnhanceField.Text) = ConfigHelper.ParseConfigString("config.pc");
+
             SkbLength.ProgressChanged += SkbLength_ProgressChanged;
 
             ChkIsWeakPasswd.CheckedChange += ChkIsWeakPasswd_CheckedChange;
@@ -67,6 +71,12 @@ namespace Passcore.Android
             BtnClear.Click += BtnClear_Click;
             BtnGenerate.Click += BtnGenerate_Click;
             BtnRandom.Click += BtnRandom_Click;
+            BtnSave.Click += BtnSave_Click;
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            ConfigHelper.SaveConfig("config.pc", EdtMasterKey.Text, EdtPassword.Text, EdtEnhanceField.Text);
         }
 
         private void ChkIsWeakPasswd_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
