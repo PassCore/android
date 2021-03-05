@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:text="@string/isHard" />
     <CheckBox
-        android:id="@+id/ChkIsWeakPasswdAllowed"
+        android:id="@+id/ChkIsWeakPasswd"
         android:layout_marginLeft ="8dp"
         android:layout_marginRight="8dp"
         android:layout_width="match_parent"

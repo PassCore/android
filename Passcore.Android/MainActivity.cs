@@ -25,7 +25,7 @@ namespace Passcore.Android
                  BtnGenerate;
 
         CheckBox CkbIsCharRequired,
-                 ChkIsWeakPasswdAllowed;
+                 ChkIsWeakPasswd;
 
         SeekBar SkbLength;
 
@@ -51,9 +51,11 @@ namespace Passcore.Android
             TxvPasswdLength = FindViewById<TextView>(Resource.Id.TxvPasswdLength);
 
             CkbIsCharRequired = FindViewById<CheckBox>(Resource.Id.CkbIsCharRequired);
-            ChkIsWeakPasswdAllowed = FindViewById<CheckBox>(Resource.Id.ChkIsWeakPasswdAllowed);
+            ChkIsWeakPasswd = FindViewById<CheckBox>(Resource.Id.ChkIsWeakPasswd);
 
             TxvVersion = FindViewById<TextView>(Resource.Id.TxvVersion);
+
+            SetSeekBar();
 
             TxvVersion.Text = $"{ProjectInfo.AppName}({ProjectInfo.AppVersion})\n" +
                 $"{Copyright}";
@@ -62,9 +64,22 @@ namespace Passcore.Android
 
             TxvVersion = FindViewById<TextView>(Resource.Id.TxvVersion);
 
+            ChkIsWeakPasswd.CheckedChange += ChkIsWeakPasswd_CheckedChange;
+
             BtnClear.Click += BtnClear_Click;
             BtnGenerate.Click += BtnGenerate_Click;
             BtnRandom.Click += BtnRandom_Click;
+        }
+
+        private void ChkIsWeakPasswd_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            SetSeekBar();
+        }
+
+        private void SetSeekBar()
+        {
+            SkbLength.Max = PasswordLengthHelper.GetMax(ChkIsWeakPasswd.Checked);
+            // FIXME: Length Text should be refresh!
         }
 
         private GenerateMode GetGenerateMode()
@@ -78,7 +93,7 @@ namespace Passcore.Android
         {
             var dic = GetDict(GetGenerateMode());
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < SkbLength.Progress; ++i)
+            for (int i = 0; i < PasswdLength; ++i)
             {
                 var m = dic[KRNG.GetInt(0, dic.Length)].dict;
                 sb.Append(m[KRNG.GetInt(0, m.Length)]);
@@ -87,7 +102,7 @@ namespace Passcore.Android
         }
 
         private void SkbLength_ProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
-            => TxvPasswdLength.Text = $"Password Length: {SkbLength.Progress}";
+            => TxvPasswdLength.Text = $"Password Length: {PasswdLength}";
 
         private void BtnGenerate_Click(object sender, EventArgs e)
         {
@@ -99,7 +114,7 @@ namespace Passcore.Android
             }
 
             string pw = Passcore.GeneratePassword(mode,
-                SkbLength.Progress,
+                PasswdLength,
                 EdtMasterKey.Text,
                 EdtPassword.Text,
                 EdtEnhanceField.Text
@@ -110,7 +125,7 @@ namespace Passcore.Android
         private void ShowPassword(string pswd)
         {
             var a = new global::Android.App.AlertDialog.Builder(this).Create();
-            a.SetTitle(Resources.GetString(Resource.String.your_passwd));
+            a.SetTitle(Resources.GetString(Resource.String.result));
             a.SetMessage($"{pswd}\n\nStrength: {PasswordStrengthCheck.GetPasswdStrength(pswd)}");
             a.SetButton(Resources.GetString(Resource.String.ok), (s, a) => { });
             a.SetButton2(Resources.GetString(Resource.String.copy_to_clipboard), async (s, a) =>
@@ -169,6 +184,11 @@ namespace Passcore.Android
         public string Copyright
         {
             get => Resources.GetString(Resource.String.copyright);
+        }
+
+        public int PasswdLength
+        {
+            get => PasswordLengthHelper.GetLength(SkbLength.Progress, ChkIsWeakPasswd.Checked);
         }
 
     }

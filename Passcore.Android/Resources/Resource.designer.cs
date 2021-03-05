@@ -3346,7 +3346,7 @@ namespace Passcore.Android
 			public const int checkbox = 2131230774;
 			
 			// aapt resource value: 0x7F080005
-			public const int ChkIsWeakPasswdAllowed = 2131230725;
+			public const int ChkIsWeakPasswd = 2131230725;
 			
 			// aapt resource value: 0x7F080037
 			public const int chronometer = 2131230775;
@@ -4356,16 +4356,19 @@ namespace Passcore.Android
 			public const int random = 2131558476;
 			
 			// aapt resource value: 0x7F0D004D
-			public const int search_menu_title = 2131558477;
+			public const int result = 2131558477;
 			
 			// aapt resource value: 0x7F0D004E
-			public const int status_bar_notification_info_overflow = 2131558478;
+			public const int search_menu_title = 2131558478;
 			
 			// aapt resource value: 0x7F0D004F
-			public const int warning = 2131558479;
+			public const int status_bar_notification_info_overflow = 2131558479;
 			
 			// aapt resource value: 0x7F0D0050
-			public const int your_passwd = 2131558480;
+			public const int warning = 2131558480;
+			
+			// aapt resource value: 0x7F0D0051
+			public const int your_passwd = 2131558481;
 			
 			static String()
 			{
