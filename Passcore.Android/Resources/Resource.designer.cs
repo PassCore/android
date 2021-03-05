@@ -3346,13 +3346,13 @@ namespace Passcore.Android
 			public const int checkbox = 2131230774;
 			
 			// aapt resource value: 0x7F080005
-			public const int ChkIsAllowWeakPasswd = 2131230725;
+			public const int ChkIsWeakPasswdAllowed = 2131230725;
 			
 			// aapt resource value: 0x7F080037
 			public const int chronometer = 2131230775;
 			
 			// aapt resource value: 0x7F080006
-			public const int CkbIsNeedChars = 2131230726;
+			public const int CkbIsCharRequired = 2131230726;
 			
 			// aapt resource value: 0x7F080038
 			public const int clip_horizontal = 2131230776;
@@ -4268,101 +4268,104 @@ namespace Passcore.Android
 			// aapt resource value: 0x7F0D002F
 			public const int confirm = 2131558447;
 			
+			// aapt resource value: 0x7F0D0032
+			public const int copyright = 2131558450;
+			
 			// aapt resource value: 0x7F0D0030
 			public const int copy_success = 2131558448;
 			
 			// aapt resource value: 0x7F0D0031
 			public const int copy_to_clipboard = 2131558449;
 			
-			// aapt resource value: 0x7F0D0032
-			public const int core_version = 2131558450;
-			
 			// aapt resource value: 0x7F0D0033
-			public const int detail = 2131558451;
+			public const int core_version = 2131558451;
 			
 			// aapt resource value: 0x7F0D0034
-			public const int enhance_field = 2131558452;
+			public const int detail = 2131558452;
 			
 			// aapt resource value: 0x7F0D0035
-			public const int error_detail = 2131558453;
+			public const int enhance_field = 2131558453;
 			
 			// aapt resource value: 0x7F0D0036
-			public const int fab_transformation_scrim_behavior = 2131558454;
+			public const int error_detail = 2131558454;
 			
 			// aapt resource value: 0x7F0D0037
-			public const int fab_transformation_sheet_behavior = 2131558455;
+			public const int fab_transformation_scrim_behavior = 2131558455;
 			
 			// aapt resource value: 0x7F0D0038
-			public const int generate = 2131558456;
+			public const int fab_transformation_sheet_behavior = 2131558456;
 			
 			// aapt resource value: 0x7F0D0039
-			public const int hide_bottom_view_on_scroll_behavior = 2131558457;
+			public const int generate = 2131558457;
 			
 			// aapt resource value: 0x7F0D003A
-			public const int isHard = 2131558458;
+			public const int hide_bottom_view_on_scroll_behavior = 2131558458;
 			
 			// aapt resource value: 0x7F0D003B
-			public const int isShort = 2131558459;
+			public const int isHard = 2131558459;
 			
 			// aapt resource value: 0x7F0D003C
-			public const int length_display = 2131558460;
+			public const int isShort = 2131558460;
 			
 			// aapt resource value: 0x7F0D003D
-			public const int lowlength_warning = 2131558461;
+			public const int length_display = 2131558461;
 			
 			// aapt resource value: 0x7F0D003E
-			public const int master_key = 2131558462;
+			public const int lowlength_warning = 2131558462;
 			
 			// aapt resource value: 0x7F0D003F
-			public const int mtrl_chip_close_icon_content_description = 2131558463;
+			public const int master_key = 2131558463;
 			
 			// aapt resource value: 0x7F0D0040
-			public const int null_return = 2131558464;
+			public const int mtrl_chip_close_icon_content_description = 2131558464;
 			
 			// aapt resource value: 0x7F0D0041
-			public const int null_return_code = 2131558465;
+			public const int null_return = 2131558465;
 			
 			// aapt resource value: 0x7F0D0042
-			public const int null_return_disc = 2131558466;
+			public const int null_return_code = 2131558466;
 			
 			// aapt resource value: 0x7F0D0043
-			public const int ok = 2131558467;
-			
-			// aapt resource value: 0x7F0D0045
-			public const int password = 2131558469;
-			
-			// aapt resource value: 0x7F0D0046
-			public const int password_toggle_content_description = 2131558470;
+			public const int null_return_disc = 2131558467;
 			
 			// aapt resource value: 0x7F0D0044
-			public const int pass_front = 2131558468;
+			public const int ok = 2131558468;
+			
+			// aapt resource value: 0x7F0D0046
+			public const int password = 2131558470;
 			
 			// aapt resource value: 0x7F0D0047
-			public const int path_password_eye = 2131558471;
+			public const int password_toggle_content_description = 2131558471;
+			
+			// aapt resource value: 0x7F0D0045
+			public const int pass_front = 2131558469;
 			
 			// aapt resource value: 0x7F0D0048
-			public const int path_password_eye_mask_strike_through = 2131558472;
+			public const int path_password_eye = 2131558472;
 			
 			// aapt resource value: 0x7F0D0049
-			public const int path_password_eye_mask_visible = 2131558473;
+			public const int path_password_eye_mask_strike_through = 2131558473;
 			
 			// aapt resource value: 0x7F0D004A
-			public const int path_password_strike_through = 2131558474;
+			public const int path_password_eye_mask_visible = 2131558474;
 			
 			// aapt resource value: 0x7F0D004B
-			public const int random = 2131558475;
+			public const int path_password_strike_through = 2131558475;
 			
 			// aapt resource value: 0x7F0D004C
-			public const int search_menu_title = 2131558476;
+			public const int random = 2131558476;
 			
 			// aapt resource value: 0x7F0D004D
-			public const int status_bar_notification_info_overflow = 2131558477;
+			public const int search_menu_title = 2131558477;
 			
 			// aapt resource value: 0x7F0D004E
-			public const int warning = 2131558478;
+			public const int status_bar_notification_info_overflow = 2131558478;
 			
 			// aapt resource value: 0x7F0D004F
-			public const int your_passwd = 2131558479;
+			public const int warning = 2131558479;
+			
+			// aapt resource value: 0x7F0D0050
+			public const int your_passwd = 2131558480;
 			
 			static String()
 			{

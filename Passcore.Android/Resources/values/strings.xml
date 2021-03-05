@@ -25,4 +25,5 @@
   <string name="cancle">Cancle</string>
   <string name="random">Make random string</string>
   <string name="your_passwd">Your password</string>
+  <string name="copyright">Copyright © 2021 Passcore Team</string>
 </resources>

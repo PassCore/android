@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Security;
 
 using Android.App;
@@ -25,11 +26,12 @@ namespace Passcore.Android
                  BtnGenerate;
 
         CheckBox CkbIsCharRequired,
-                 CkbIsShortLengthRequired;
+                 ChkIsWeakPasswdAllowed;
 
         SeekBar SkbLength;
 
-        TextView TxvPasswdLength;
+        TextView TxvPasswdLength,
+            TxvVersion;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -49,9 +51,21 @@ namespace Passcore.Android
 
             TxvPasswdLength = FindViewById<TextView>(Resource.Id.TxvPasswdLength);
 
+            CkbIsCharRequired = FindViewById<CheckBox>(Resource.Id.CkbIsCharRequired);
+            ChkIsWeakPasswdAllowed = FindViewById<CheckBox>(Resource.Id.ChkIsWeakPasswdAllowed);
+
             BtnClear.Click += BtnClear_Click;
             BtnGenerate.Click += BtnGenerate_Click;
+
+            TxvVersion = FindViewById<TextView>(Resource.Id.TxvVersion);
+
+            TxvVersion.Text = $"{ProjectInfo.AppName}({ProjectInfo.AppVersion})\n" +
+                $"{Copyright}";
+
             SkbLength.ProgressChanged += SkbLength_ProgressChanged;
+
+            TxvVersion = FindViewById<TextView>(Resource.Id.TxvVersion);
+
         }
 
         private void SkbLength_ProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
@@ -134,6 +148,11 @@ namespace Passcore.Android
                 },
                 _ => throw new NotImplementedException(),
             };
+
+        public string Copyright
+        {
+            get => Resources.GetString(Resource.String.copyright);
+        }
 
     }
 }

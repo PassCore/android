@@ -46,14 +46,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <CheckBox
-        android:id="@+id/CkbIsNeedChars"
+        android:id="@+id/CkbIsCharRequired"
         android:layout_marginLeft ="8dp"
         android:layout_marginRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/isHard" />
     <CheckBox
-        android:id="@+id/ChkIsAllowWeakPasswd"
+        android:id="@+id/ChkIsWeakPasswdAllowed"
         android:layout_marginLeft ="8dp"
         android:layout_marginRight="8dp"
         android:layout_width="match_parent"
