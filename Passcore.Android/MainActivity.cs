@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security;
 using System.Text;
 
 using Android.App;
@@ -69,10 +68,11 @@ namespace Passcore.Android
         }
 
         private GenerateMode GetGenerateMode()
-        {
-            // TODO: FIX
-            return GenerateMode.WithChar;
-        }
+            => CkbIsCharRequired.Checked switch
+            {
+                true => GenerateMode.WithChar,
+                _ => GenerateMode.NoChar,
+            };
 
         private void BtnRandom_Click(object sender, EventArgs e)
         {
