@@ -36,7 +36,7 @@ namespace Passcore.Android
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
             BtnClear = FindViewById<Button>(Resource.Id.BtnClean);
@@ -62,9 +62,12 @@ namespace Passcore.Android
             TxvVersion.Text = $"{ProjectInfo.AppName}({ProjectInfo.AppVersion})\n" +
                 $"{Copyright}";
 
+            FlashTxvPasswdLength();
+
             (EdtMasterKey.Text, EdtPassword.Text, EdtEnhanceField.Text) =
                 ConfigHelper.ParseConfigString(ConfigHelper.GetConfigString());
 
+            #region Evt
             SkbLength.ProgressChanged += SkbLength_ProgressChanged;
 
             ChkIsWeakPasswd.CheckedChange += ChkIsWeakPasswd_CheckedChange;
@@ -73,6 +76,7 @@ namespace Passcore.Android
             BtnGenerate.Click += BtnGenerate_Click;
             BtnRandom.Click += BtnRandom_Click;
             BtnSave.Click += BtnSave_Click;
+            #endregion
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -111,6 +115,9 @@ namespace Passcore.Android
         }
 
         private void SkbLength_ProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+            => FlashTxvPasswdLength();
+
+        private void FlashTxvPasswdLength()
             => TxvPasswdLength.Text = $"Password Length: {PasswdLength}";
 
         private void BtnGenerate_Click(object sender, EventArgs e)
