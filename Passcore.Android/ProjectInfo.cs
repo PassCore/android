@@ -1,6 +1,4 @@
-﻿using Android.Content.Res;
-
-using System.Reflection;
+﻿using System.Reflection;
 
 using Xamarin.Essentials;
 

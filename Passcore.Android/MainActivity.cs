@@ -111,7 +111,7 @@ namespace Passcore.Android
         {
             var a = new global::Android.App.AlertDialog.Builder(this).Create();
             a.SetTitle(Resources.GetString(Resource.String.your_passwd));
-            a.SetMessage(pswd);
+            a.SetMessage($"{pswd}\n\nStrength: {PasswordStrengthCheck.GetPasswdStrength(pswd)}");
             a.SetButton(Resources.GetString(Resource.String.ok), (s, a) => { });
             a.SetButton2(Resources.GetString(Resource.String.copy_to_clipboard), async (s, a) =>
             {
