@@ -37,17 +37,17 @@ namespace Passcore.Android
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            BtnClear = FindViewById<Button>(Resource.Id.Clean);
-            BtnGenerate = FindViewById<Button>(Resource.Id.Generate);
-            BtnRandom = FindViewById<Button>(Resource.Id.Random);
+            BtnClear = FindViewById<Button>(Resource.Id.BtnClean);
+            BtnGenerate = FindViewById<Button>(Resource.Id.BtnGenerate);
+            BtnRandom = FindViewById<Button>(Resource.Id.BtnRandom);
 
-            EdtMasterKey = FindViewById<EditText>(Resource.Id.MasterKey);
-            EdtPassword = FindViewById<EditText>(Resource.Id.Password);
-            EdtEnhanceField = FindViewById<EditText>(Resource.Id.EnhanceField);
+            EdtMasterKey = FindViewById<EditText>(Resource.Id.EdtMasterKey);
+            EdtPassword = FindViewById<EditText>(Resource.Id.EdtPassword);
+            EdtEnhanceField = FindViewById<EditText>(Resource.Id.EdtEnhanceField);
 
             SkbLength = FindViewById<SeekBar>(Resource.Id.SeekBar);
 
-            TxvPasswdLength = FindViewById<TextView>(Resource.Id.SeekLength);
+            TxvPasswdLength = FindViewById<TextView>(Resource.Id.TxvPasswdLength);
 
             BtnClear.Click += BtnClear_Click;
             BtnGenerate.Click += BtnGenerate_Click;

@@ -4,9 +4,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <EditText
-        android:id="@+id/MasterKey"
+        android:id="@+id/EdtMasterKey"
         android:maxLines="1"
-        android:hint="@string/pKey_0_hint"
+        android:hint="@string/master_key"
         android:layout_marginTop="8dp"
         android:layout_marginLeft ="8dp"
         android:layout_marginRight="8dp"
@@ -14,18 +14,18 @@
         android:layout_height="wrap_content"/>
     <EditText
         android:password="true"
-        android:id="@+id/Password"
+        android:id="@+id/EdtPassword"
         android:maxLines="1"
-        android:hint="@string/pKey_1_hint"
+        android:hint="@string/password"
         android:layout_marginLeft ="8dp"
         android:layout_marginRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
         android:password="true"
-        android:id="@+id/EnhanceField"
+        android:id="@+id/EdtEnhanceField"
         android:maxLines="1"
-        android:hint="@string/pKey_2_hint"
+        android:hint="@string/enhance_field"
         android:layout_marginLeft ="8dp"
         android:layout_marginRight="8dp"
         android:layout_width="match_parent"
@@ -39,28 +39,28 @@
         android:layout_height="wrap_content"
         android:id="@+id/SeekBar" />
     <TextView
-        android:id="@+id/SeekLength" 
+        android:id="@+id/TxvPasswdLength" 
         android:text="@string/length_display"
         android:layout_marginLeft ="15dp"
         android:layout_marginRight="13dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <CheckBox
-        android:id="@+id/isHard"
+        android:id="@+id/CkbIsNeedChars"
         android:layout_marginLeft ="8dp"
         android:layout_marginRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/isHard" />
     <CheckBox
-        android:id="@+id/isShort"
+        android:id="@+id/ChkIsAllowWeakPasswd"
         android:layout_marginLeft ="8dp"
         android:layout_marginRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/isShort" />
     <Button
-        android:id="@+id/Generate"
+        android:id="@+id/BtnGenerate"
         android:text="@string/generate"
         android:textStyle="bold"
         android:layout_marginLeft ="8dp"
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/Clean"
+        android:id="@+id/BtnClean"
         android:text="@string/clean_input"
         android:textStyle="bold"
         android:layout_marginLeft ="8dp"
@@ -76,7 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/Random"
+        android:id="@+id/BtnRandom"
         android:text="@string/random"
         android:textStyle="bold"
         android:layout_marginLeft ="8dp"
@@ -84,10 +84,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
+        android:id="@+id/TxvVersion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center | bottom"
-        android:text="@string/version"
         android:layout_marginBottom="10dp"
     />
 </LinearLayout>

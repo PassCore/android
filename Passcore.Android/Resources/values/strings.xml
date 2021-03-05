@@ -1,9 +1,9 @@
 <resources>
   <string name="app_name">Passcore</string>
   <string name="generate">Generate</string>
-  <string name="pKey_0_hint">Master Key</string>
-  <string name="pKey_1_hint">Password</string>
-  <string name="pKey_2_hint">Enhance Field (Optional)</string>
+  <string name="master_key">Master Key</string>
+  <string name="password">Password</string>
+  <string name="enhance_field">Enhance Field (Optional)</string>
   <string name="isHard">Include characters</string>
   <string name="ok">OK</string>
   <string name="copy_to_clipboard">Copy</string>
@@ -16,7 +16,6 @@
   <string name="detail">Detail</string>
   <string name="pass_front">Password:</string>
   <string name="core_version">20200803</string>
-  <string name="version">Inner Version(Xamarin.Android O)</string>
   <string name="clean_input">Clean input</string>
   <string name="length_display">Password Length: </string>
   <string name="isShort">Allow low-length password</string>
