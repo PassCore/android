@@ -16,18 +16,20 @@ namespace Passcore.Android
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        EditText edtMasterKey,
-                 edtPassword,
-                 edtEnhanceField;
+        EditText EdtMasterKey,
+                 EdtPassword,
+                 EdtEnhanceField;
 
-        Button   btnClear,
-                 btnRandom,
-                 btnGenerate;
+        Button BtnClear,
+                 BtnRandom,
+                 BtnGenerate;
 
-        CheckBox ckbIsCharRequired,
-                 ckbIsShortLengthRequired;
+        CheckBox CkbIsCharRequired,
+                 CkbIsShortLengthRequired;
 
-        SeekBar  skbLength;
+        SeekBar SkbLength;
+
+        TextView TxvPasswdLength;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -35,35 +37,41 @@ namespace Passcore.Android
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            btnClear = FindViewById<Button>(Resource.Id.Clean);
-            btnGenerate = FindViewById<Button>(Resource.Id.Generate);
-            btnRandom = FindViewById<Button>(Resource.Id.Random);
+            BtnClear = FindViewById<Button>(Resource.Id.Clean);
+            BtnGenerate = FindViewById<Button>(Resource.Id.Generate);
+            BtnRandom = FindViewById<Button>(Resource.Id.Random);
 
-            edtMasterKey = FindViewById<EditText>(Resource.Id.MasterKey);
-            edtPassword = FindViewById<EditText>(Resource.Id.Password);
-            edtEnhanceField = FindViewById<EditText>(Resource.Id.EnhanceField);
+            EdtMasterKey = FindViewById<EditText>(Resource.Id.MasterKey);
+            EdtPassword = FindViewById<EditText>(Resource.Id.Password);
+            EdtEnhanceField = FindViewById<EditText>(Resource.Id.EnhanceField);
 
-            skbLength = FindViewById<SeekBar>(Resource.Id.SeekBar);
+            SkbLength = FindViewById<SeekBar>(Resource.Id.SeekBar);
 
-            btnClear.Click += btnClear_Click;
-            btnGenerate.Click += btnGenerate_Click;
+            TxvPasswdLength = FindViewById<TextView>(Resource.Id.SeekLength);
+
+            BtnClear.Click += BtnClear_Click;
+            BtnGenerate.Click += BtnGenerate_Click;
+            SkbLength.ProgressChanged += SkbLength_ProgressChanged;
         }
 
-        private void btnGenerate_Click(object sender, EventArgs e)
+        private void SkbLength_ProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+            => TxvPasswdLength.Text = $"Password Length: {SkbLength.Progress}";
+
+        private void BtnGenerate_Click(object sender, EventArgs e)
         {
             // TODO: FIX
             var mode = GetDict(GenerateMode.WithChar);
 
-            if (string.IsNullOrWhiteSpace(edtMasterKey.Text) || string.IsNullOrWhiteSpace(edtPassword.Text))
+            if (string.IsNullOrWhiteSpace(EdtMasterKey.Text) || string.IsNullOrWhiteSpace(EdtPassword.Text))
             {
                 // Invalid
             }
 
             string pw = Passcore.GeneratePassword(mode,
-                skbLength.Progress,
-                edtMasterKey.Text,
-                edtPassword.Text,
-                edtEnhanceField.Text
+                SkbLength.Progress,
+                EdtMasterKey.Text,
+                EdtPassword.Text,
+                EdtEnhanceField.Text
             );
             ShowPassword(pw);
         }
@@ -81,9 +89,9 @@ namespace Passcore.Android
             a.Show();
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void BtnClear_Click(object sender, EventArgs e)
         {
-            edtMasterKey.Text = edtPassword.Text = edtEnhanceField.Text = default;
+            EdtMasterKey.Text = EdtPassword.Text = EdtEnhanceField.Text = default;
         }
 
         enum GenerateMode

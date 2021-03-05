@@ -61,13 +61,6 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\CryptoBase.cs" />
-    <Compile Include="Core\Passcore.cs" />
-    <Compile Include="Core\Program.cs" />
-    <Compile Include="Core\SeededRNG.cs" />
-    <Compile Include="Core\SequenceGenerator.cs" />
-    <Compile Include="Core\Tables.cs" />
-    <Compile Include="Core\Utils.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,6 +103,9 @@
   <ItemGroup>
     <PackageReference Include="BouncyCastle.NetCore">
       <Version>1.8.6</Version>
+    </PackageReference>
+    <PackageReference Include="Passcore">
+      <Version>1.0.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.Core.Utils" Version="28.0.0.3" />

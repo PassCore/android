@@ -18,7 +18,7 @@
   <string name="core_version">20200803</string>
   <string name="version">Inner Version(Xamarin.Android O)</string>
   <string name="clean_input">Clean input</string>
-  <string name="length_display">Current password length: </string>
+  <string name="length_display">Password Length: </string>
   <string name="isShort">Allow low-length password</string>
   <string name="warning">Warning</string>
   <string name="lowlength-warning">Low-length passwords are not recommended. Because it is extremely likely to pose a security risk. If you do not know what you are doing, please cancle this operation.</string>
