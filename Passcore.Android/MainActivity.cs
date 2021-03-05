@@ -62,8 +62,6 @@ namespace Passcore.Android
 
             SkbLength.ProgressChanged += SkbLength_ProgressChanged;
 
-            TxvVersion = FindViewById<TextView>(Resource.Id.TxvVersion);
-
             ChkIsWeakPasswd.CheckedChange += ChkIsWeakPasswd_CheckedChange;
 
             BtnClear.Click += BtnClear_Click;
