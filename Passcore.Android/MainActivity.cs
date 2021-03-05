@@ -62,7 +62,8 @@ namespace Passcore.Android
             TxvVersion.Text = $"{ProjectInfo.AppName}({ProjectInfo.AppVersion})\n" +
                 $"{Copyright}";
 
-            (EdtMasterKey.Text, EdtPassword.Text, EdtEnhanceField.Text) = ConfigHelper.ParseConfigString("config.pc");
+            (EdtMasterKey.Text, EdtPassword.Text, EdtEnhanceField.Text) =
+                ConfigHelper.ParseConfigString(ConfigHelper.GetConfigString());
 
             SkbLength.ProgressChanged += SkbLength_ProgressChanged;
 

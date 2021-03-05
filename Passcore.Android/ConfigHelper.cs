@@ -38,7 +38,7 @@ namespace Passcore.Android
                 if (i < 0)
                     continue;
                 var key = s.Substring(0, i).Trim();
-                var value = i == s.Length - 1 ? "" : s.Substring(i + 1).Trim();
+                var value = i == s.Length - 1 ? "" : s[(i + 1)..].Trim();
                 switch (key)
                 {
                     case "MasterKey":
