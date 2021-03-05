@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Reflection;
 using System.Security;
+using System.Text;
 
 using Android.App;
 using Android.OS;
@@ -54,9 +54,6 @@ namespace Passcore.Android
             CkbIsCharRequired = FindViewById<CheckBox>(Resource.Id.CkbIsCharRequired);
             ChkIsWeakPasswdAllowed = FindViewById<CheckBox>(Resource.Id.ChkIsWeakPasswdAllowed);
 
-            BtnClear.Click += BtnClear_Click;
-            BtnGenerate.Click += BtnGenerate_Click;
-
             TxvVersion = FindViewById<TextView>(Resource.Id.TxvVersion);
 
             TxvVersion.Text = $"{ProjectInfo.AppName}({ProjectInfo.AppVersion})\n" +
@@ -66,6 +63,27 @@ namespace Passcore.Android
 
             TxvVersion = FindViewById<TextView>(Resource.Id.TxvVersion);
 
+            BtnClear.Click += BtnClear_Click;
+            BtnGenerate.Click += BtnGenerate_Click;
+            BtnRandom.Click += BtnRandom_Click;
+        }
+
+        private GenerateMode GetGenerateMode()
+        {
+            // TODO: FIX
+            return GenerateMode.WithChar;
+        }
+
+        private void BtnRandom_Click(object sender, EventArgs e)
+        {
+            var dic = GetDict(GetGenerateMode());
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < SkbLength.Progress; ++i)
+            {
+                var m = dic[KRNG.GetInt(0, dic.Length)].dict;
+                sb.Append(m[KRNG.GetInt(0, m.Length)]);
+            }
+            ShowPassword(sb.ToString());
         }
 
         private void SkbLength_ProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
@@ -73,8 +91,7 @@ namespace Passcore.Android
 
         private void BtnGenerate_Click(object sender, EventArgs e)
         {
-            // TODO: FIX
-            var mode = GetDict(GenerateMode.WithChar);
+            var mode = GetDict(GetGenerateMode());
 
             if (string.IsNullOrWhiteSpace(EdtMasterKey.Text) || string.IsNullOrWhiteSpace(EdtPassword.Text))
             {
