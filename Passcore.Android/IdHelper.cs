@@ -1,32 +1,26 @@
 ﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using Android.Util;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 
 namespace Passcore.Android
 {
     class IdHelper
     {
-        public (string, Exception) GetUID()
+        public static (string, Exception) GetUID()
         {
             try
             {
                 var context = Application.Context;
                 return (global::Android.Provider.Settings.Secure.GetString(
-                    context.ContentResolver, 
+                    context.ContentResolver,
                     global::Android.Provider.Settings.Secure.AndroidId), null);
             }
             catch (Exception ex)
             {
-                return ("", null);
+                Log.Error("Passcore/IdHelper", $"Fail to Get device UID!\n{ex.ToString()}");
+                return ("", ex);
             }
         }
     }

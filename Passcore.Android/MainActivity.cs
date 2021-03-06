@@ -39,6 +39,8 @@ namespace Passcore.Android
             Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
+            SharedActivity.MainActivity = this;
+
             #region Components Define
             BtnClear = FindViewById<Button>(Resource.Id.BtnClean);
             BtnGenerate = FindViewById<Button>(Resource.Id.BtnGenerate);
@@ -83,8 +85,6 @@ namespace Passcore.Android
             BtnSave.Click += BtnSave_Click;
             BtnSettings.Click += BtnSettings_Click;
             #endregion
-
-            SharedActivity.MainActivity = this;
         }
 
         private void BtnSettings_Click(object sender, EventArgs e)

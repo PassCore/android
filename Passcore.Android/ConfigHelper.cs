@@ -1,19 +1,20 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Util;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Passcore.Android
 {
     class ConfigHelper
     {
+        private static string GetDeviceKey()
+        {
+            var m = IdHelper.GetUID();
+            if (m.Item2 != null)
+                Log.Error("Passcore/DeviceKey", $"Failed to get device UID.\n{m.Item2.ToString()}");
+            return IdHelper.GetUID().Item1;
+        }
+
+
         public static string BuildConfigString(string masterKey, string passwd, string enhance)
         {
             return $"MasterKey={masterKey}\n" +
@@ -22,7 +23,20 @@ namespace Passcore.Android
         }
 
         public static string GetConfigString()
-            => IOHelper.ReadAllText("config.pc");
+        {
+            var c = IOHelper.ReadAllText("config.pc");
+            if (string.IsNullOrWhiteSpace(c))
+                return "";
+            try
+            {
+                return AesHelper.Decrypt(GetDeviceKey(), c);
+            }
+            catch (Exception ex)
+            {
+                Log.Info("Passcore/DeviceKey", $"Failed to GetConfigString()\n{ex.ToString()}");
+                return "";
+            }
+        }
 
         public static (string, string, string) ParseConfigString(string config)
         {
@@ -57,7 +71,7 @@ namespace Passcore.Android
 
         public static void SaveConfig(string path, string mk, string passwd, string enhance)
         {
-            IOHelper.WriteAllText(path, BuildConfigString(mk, passwd, enhance));
+            IOHelper.WriteAllText(path, AesHelper.Encrypt(GetDeviceKey(), BuildConfigString(mk, passwd, enhance)));
         }
     }
 }
