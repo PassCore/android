@@ -7,7 +7,7 @@ using System;
 
 namespace Passcore.Android
 {
-    [Activity(Label = "@string/settings", Theme = "@style/AppTheme")]
+    [Activity(Label = "@string/settings", Theme = "@style/AppTheme", ParentActivity = typeof(MainActivity))]
     public class SettingsActivity : AppCompatActivity
     {
         Button BtnApply;
@@ -16,6 +16,8 @@ namespace Passcore.Android
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_settings);
+
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             BtnApply = FindViewById<Button>(Resource.Id.BtnApply);
             SwtBlockScreenshot = FindViewById<Switch>(Resource.Id.SwtBlockScreenshot);
