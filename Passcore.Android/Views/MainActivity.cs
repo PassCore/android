@@ -40,7 +40,9 @@ namespace Passcore.Android.Views
             Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            SharedActivity.MainActivity = this;
+            // FIXME: CONFIG
+            Shared.Config = new Models.Config();
+            Shared.MainActivity = this;
 
             #region Components Define
             BtnClear = FindViewById<Button>(Resource.Id.BtnClean);
@@ -85,7 +87,25 @@ namespace Passcore.Android.Views
             BtnRandom.Click += BtnRandom_Click;
             BtnSave.Click += BtnSave_Click;
             BtnSettings.Click += BtnSettings_Click;
+            EdtEnhanceField.AfterTextChanged += EdtEnhanceField_AfterTextChanged;
+            EdtMasterKey.AfterTextChanged += EdtMasterKey_AfterTextChanged;
+            EdtPassword.AfterTextChanged += EdtPassword_AfterTextChanged;
             #endregion
+        }
+
+        private void EdtPassword_AfterTextChanged(object sender, global::Android.Text.AfterTextChangedEventArgs e)
+        {
+            Shared.Config.MasterKey = EdtPassword.Text;
+        }
+
+        private void EdtMasterKey_AfterTextChanged(object sender, global::Android.Text.AfterTextChangedEventArgs e)
+        {
+            Shared.Config.MasterKey = EdtMasterKey.Text;
+        }
+
+        private void EdtEnhanceField_AfterTextChanged(object sender, global::Android.Text.AfterTextChangedEventArgs e)
+        {
+            Shared.Config.Enhance = EdtEnhanceField.Text;
         }
 
         private void BtnSettings_Click(object sender, EventArgs e)
