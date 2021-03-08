@@ -73,8 +73,9 @@ namespace Passcore.Android.Views
 
             FlashTxvPasswdLength();
 
-            (EdtMasterKey.Text, EdtPassword.Text, EdtEnhanceField.Text) =
-                (Shared.Config.MasterKey, Shared.Config.Password, Shared.Config.Enhance);
+            EdtMasterKey.Text = Shared.Config.MasterKey;
+            EdtPassword.Text = Shared.Config.Password;
+            EdtEnhanceField.Text = Shared.Config.Enhance;
             #endregion
 
             #region Evt

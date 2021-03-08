@@ -3,7 +3,6 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
 
-using System;
 using Passcore.Android.Helper;
 
 namespace Passcore.Android.Views
@@ -27,6 +26,10 @@ namespace Passcore.Android.Views
             SwtSaveEnhance = FindViewById<Switch>(Resource.Id.SwtSaveEnhance);
             SwtSavePassword = FindViewById<Switch>(Resource.Id.SwtSavePassword);
             SwtSaveMasterKey = FindViewById<Switch>(Resource.Id.SwtSaveMasterKey);
+
+            SwtSaveEnhance.Checked = Shared.Config.IsStoreEnhance;
+            SwtSavePassword.Checked = Shared.Config.IsStorePassword;
+            SwtSaveMasterKey.Checked = Shared.Config.IsStoreMasterKey;
 
             SwtBlockScreenshot.Checked = Shared.MainActivity != null ?
                 Shared.MainActivity.IsSecure :
