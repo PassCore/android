@@ -1,4 +1,4 @@
-﻿namespace Passcore.Android
+﻿namespace Passcore.Android.Views
 {
     public class SharedActivity
     {

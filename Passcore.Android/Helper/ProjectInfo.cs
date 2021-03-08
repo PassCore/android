@@ -2,7 +2,7 @@
 
 using Xamarin.Essentials;
 
-namespace Passcore.Android
+namespace Passcore.Android.Helper
 {
     static class ProjectInfo
     {

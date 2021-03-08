@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Passcore.Android
+namespace Passcore.Android.Helper
 {
     class IOHelper
     {

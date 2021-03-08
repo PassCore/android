@@ -4,7 +4,7 @@ using Android.Util;
 using System;
 
 
-namespace Passcore.Android
+namespace Passcore.Android.Helper
 {
     class IdHelper
     {

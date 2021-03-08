@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Views;
 
-namespace Passcore.Android
+namespace Passcore.Android.Helper
 {
     public class ActivityHelper
     {

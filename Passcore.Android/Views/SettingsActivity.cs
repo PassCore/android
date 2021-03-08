@@ -4,8 +4,9 @@ using Android.Support.V7.App;
 using Android.Widget;
 
 using System;
+using Passcore.Android.Helper;
 
-namespace Passcore.Android
+namespace Passcore.Android.Views
 {
     [Activity(Label = "@string/settings", Theme = "@style/AppTheme", ParentActivity = typeof(MainActivity))]
     public class SettingsActivity : AppCompatActivity

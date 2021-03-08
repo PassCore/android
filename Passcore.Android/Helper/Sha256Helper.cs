@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Passcore.Android
+namespace Passcore.Android.Helper
 {
     public class Sha256Helper
     {

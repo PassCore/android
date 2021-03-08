@@ -8,8 +8,9 @@ using Android.Support.V7.App;
 using Android.Widget;
 
 using Xamarin.Essentials;
+using Passcore.Android.Helper;
 
-namespace Passcore.Android
+namespace Passcore.Android.Views
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
