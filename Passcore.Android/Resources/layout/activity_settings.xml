@@ -18,6 +18,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SwtBlockScreenshot" />
+    <TextView
+        android:id="@+id/TxvConvenience" 
+        android:text="@string/convenience"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft ="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Switch
+        android:layout_marginLeft ="15dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/save_masterkey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SwtSaveMasterKey" />
+    <Switch
+        android:layout_marginLeft ="15dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/save_passwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SwtSavePassword" />
+    <Switch
+        android:layout_marginLeft ="15dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/save_enhance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SwtSaveEnhance" />
     <Button
         android:id="@+id/BtnApply"
         android:text="@string/apply"

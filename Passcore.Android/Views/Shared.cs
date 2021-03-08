@@ -1,7 +1,9 @@
 ﻿namespace Passcore.Android.Views
 {
-    public class SharedActivity
+    public class Shared
     {
         public static MainActivity MainActivity;
+
+        public static Models.Config Config;
     }
 }

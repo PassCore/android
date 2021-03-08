@@ -23,8 +23,8 @@ namespace Passcore.Android.Views
             BtnApply = FindViewById<Button>(Resource.Id.BtnApply);
             SwtBlockScreenshot = FindViewById<Switch>(Resource.Id.SwtBlockScreenshot);
 
-            SwtBlockScreenshot.Checked = SharedActivity.MainActivity != null ?
-                SharedActivity.MainActivity.IsSecure :
+            SwtBlockScreenshot.Checked = Shared.MainActivity != null ?
+                Shared.MainActivity.IsSecure :
                 false;
 
             SwtBlockScreenshot.CheckedChange += SwtBlockScreenshot_CheckedChange;
@@ -33,8 +33,8 @@ namespace Passcore.Android.Views
 
         private void BtnApply_Click(object sender, EventArgs e)
         {
-            if (SharedActivity.MainActivity != null)
-                SharedActivity.MainActivity.IsSecure = SwtBlockScreenshot.Checked;
+            if (Shared.MainActivity != null)
+                Shared.MainActivity.IsSecure = SwtBlockScreenshot.Checked;
         }
 
         private void SwtBlockScreenshot_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)

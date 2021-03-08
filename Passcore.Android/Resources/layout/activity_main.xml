@@ -11,7 +11,8 @@
         android:layout_marginLeft ="8dp"
         android:layout_marginRight="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:inputType="text" />
     <EditText
         android:password="true"
         android:id="@+id/EdtPassword"
@@ -20,7 +21,8 @@
         android:layout_marginLeft ="8dp"
         android:layout_marginRight="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:inputType="textPassword" />
     <EditText
         android:password="true"
         android:id="@+id/EdtEnhanceField"
@@ -29,7 +31,8 @@
         android:layout_marginLeft ="8dp"
         android:layout_marginRight="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:inputType="text" />
     <SeekBar
         android:layout_marginTop="10dp"
         android:layout_marginLeft ="0dp"
