@@ -47,14 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SwtSaveEnhance" />
-    <Button
-        android:id="@+id/BtnApply"
-        android:text="@string/apply"
-        android:textStyle="bold"
-        android:layout_marginLeft ="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/TxvVersion"
         android:layout_width="match_parent"

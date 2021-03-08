@@ -11,8 +11,11 @@ namespace Passcore.Android.Views
     [Activity(Label = "@string/settings", Theme = "@style/AppTheme", ParentActivity = typeof(MainActivity))]
     public class SettingsActivity : AppCompatActivity
     {
-        Button BtnApply;
-        Switch SwtBlockScreenshot;
+        Switch SwtBlockScreenshot,
+               SwtSaveEnhance,
+               SwtSavePassword,
+               SwtSaveMasterKey;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -20,24 +23,42 @@ namespace Passcore.Android.Views
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            BtnApply = FindViewById<Button>(Resource.Id.BtnApply);
             SwtBlockScreenshot = FindViewById<Switch>(Resource.Id.SwtBlockScreenshot);
+            SwtSaveEnhance = FindViewById<Switch>(Resource.Id.SwtSaveEnhance);
+            SwtSavePassword = FindViewById<Switch>(Resource.Id.SwtSavePassword);
+            SwtSaveMasterKey = FindViewById<Switch>(Resource.Id.SwtSaveMasterKey);
 
             SwtBlockScreenshot.Checked = Shared.MainActivity != null ?
                 Shared.MainActivity.IsSecure :
                 false;
 
             SwtBlockScreenshot.CheckedChange += SwtBlockScreenshot_CheckedChange;
-            BtnApply.Click += BtnApply_Click;
+            SwtSaveMasterKey.CheckedChange += SwtSaveMasterKey_CheckedChange;
+            SwtSaveEnhance.CheckedChange += SwtSaveEnhance_CheckedChange;
+            SwtSavePassword.CheckedChange += SwtSavePassword_CheckedChange;
+
         }
 
-        private void BtnApply_Click(object sender, EventArgs e)
+        private void SwtSavePassword_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-            if (Shared.MainActivity != null)
-                Shared.MainActivity.IsSecure = SwtBlockScreenshot.Checked;
+            Shared.Config.IsStorePassword = SwtSavePassword.Checked;
+        }
+
+        private void SwtSaveEnhance_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            Shared.Config.IsStoreEnhance = SwtSaveEnhance.Checked;
+        }
+
+        private void SwtSaveMasterKey_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            Shared.Config.IsStoreMasterKey = SwtSaveMasterKey.Checked;
         }
 
         private void SwtBlockScreenshot_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
-            => ActivityHelper.SetSecureFlag(this, SwtBlockScreenshot.Checked);
+        {
+            ActivityHelper.SetSecureFlag(this, SwtBlockScreenshot.Checked);
+            if (Shared.MainActivity != null)
+                Shared.MainActivity.IsSecure = SwtBlockScreenshot.Checked;
+        }
     }
 }

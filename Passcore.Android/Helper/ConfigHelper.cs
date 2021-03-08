@@ -65,8 +65,6 @@ namespace Passcore.Android.Helper
             };
         }
 
-        
-
         public static void SaveConfig(string path)
         {
             var c = Shared.Config;
