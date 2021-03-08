@@ -48,21 +48,26 @@ namespace Passcore.Android.Helper
         {
             if (string.IsNullOrWhiteSpace(config))
             {
-                Shared.Config = new Models.Config();
+                Shared.Config.ValueChanged += () =>
+                {
+                    SaveConfig("config.pc");
+                };
             }
             try
             {
                 Shared.Config = JsonConvert.DeserializeObject<Models.Config>(config);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Shared.Config = new Models.Config();
+                Log.Info("Passcore/Config", $"Failed to ParseConfigString()\n{ex.ToString()}");
             }
-
-            Shared.Config.ValueChanged += () =>
+            finally
             {
-                SaveConfig("config.pc");
-            };
+                Shared.Config.ValueChanged += () =>
+                {
+                    SaveConfig("config.pc");
+                };
+            }
         }
 
         public static void SaveConfig(string path)
