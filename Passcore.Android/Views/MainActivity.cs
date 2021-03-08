@@ -40,9 +40,9 @@ namespace Passcore.Android.Views
             Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            // FIXME: CONFIG
-            Shared.Config = new Models.Config();
             Shared.MainActivity = this;
+
+            ConfigHelper.ParseConfigString(ConfigHelper.GetConfigString());
 
             #region Components Define
             BtnClear = FindViewById<Button>(Resource.Id.BtnClean);
@@ -73,8 +73,10 @@ namespace Passcore.Android.Views
 
             FlashTxvPasswdLength();
 
+            EdtMasterKey.Text = Shared.Config.MasterKey;
+
             (EdtMasterKey.Text, EdtPassword.Text, EdtEnhanceField.Text) =
-                ConfigHelper.ParseConfigString(ConfigHelper.GetConfigString());
+                (Shared.Config.MasterKey, Shared.Config.Password, Shared.Config.Enhance);
             #endregion
 
             #region Evt
@@ -116,7 +118,7 @@ namespace Passcore.Android.Views
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            ConfigHelper.SaveConfig("config.pc", EdtMasterKey.Text, EdtPassword.Text, EdtEnhanceField.Text);
+            ConfigHelper.SaveConfig("config.pc");
         }
 
         private void ChkIsWeakPasswd_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)

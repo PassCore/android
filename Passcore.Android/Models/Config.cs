@@ -4,11 +4,12 @@
     {
         public delegate void ValueHandler();
 
-        public event ValueHandler ValueChanged;
-
+        public event ValueHandler ValueChanged = delegate { }; // { } can prevent NRE
 
         private string _password, _enhance, _masterKey;
-        private bool _isStoreMasterKey, _isStorePassword, _isStoreEnhance;
+        private bool _isStoreMasterKey = false,
+            _isStorePassword = false,
+            _isStoreEnhance = false;
 
         public string MasterKey
         {
@@ -48,8 +49,8 @@
             get => _isStoreMasterKey;
             set
             {
-                _isStoreMasterKey = value;
                 ValueChanged();
+                _isStoreMasterKey = value;
             }
         }
         public bool IsStorePassword
@@ -69,6 +70,16 @@
                 _isStoreEnhance = value;
                 ValueChanged();
             }
+        }
+
+        public void Clean()
+        {
+            if (!IsStoreEnhance)
+                Enhance = null;
+            if (!IsStoreMasterKey)
+                MasterKey = null;
+            if (!IsStorePassword)
+                Password = null;
         }
     }
 }

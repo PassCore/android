@@ -1,5 +1,9 @@
 ﻿using Android.Util;
 
+using Newtonsoft.Json;
+
+using Passcore.Android.Views;
+
 using System;
 
 namespace Passcore.Android.Helper
@@ -14,12 +18,14 @@ namespace Passcore.Android.Helper
             return IdHelper.GetUID().Item1;
         }
 
-
-        public static string BuildConfigString(string masterKey, string passwd, string enhance)
+        public static string BuildConfigString(Models.Config c)
         {
-            return $"MasterKey={masterKey}\n" +
-                $"Password={passwd}\n" +
-                $"Enhance={enhance}";
+            return JsonConvert.SerializeObject(c);
+        }
+
+        public static string BuildConfigString()
+        {
+            return BuildConfigString(Shared.Config);
         }
 
         public static string GetConfigString()
@@ -38,40 +44,34 @@ namespace Passcore.Android.Helper
             }
         }
 
-        public static (string, string, string) ParseConfigString(string config)
+        public static void ParseConfigString(string config)
         {
             if (string.IsNullOrWhiteSpace(config))
-                return ("", "", "");
-            var c = config.Split('\n');
-            var mk = "";
-            var passwd = "";
-            var enhance = "";
-            foreach (var s in c)
             {
-                var i = s.IndexOf('=');
-                if (i < 0)
-                    continue;
-                var key = s.Substring(0, i).Trim();
-                var value = i == s.Length - 1 ? "" : s[(i + 1)..].Trim();
-                switch (key)
-                {
-                    case "MasterKey":
-                        mk = value;
-                        break;
-                    case "Password":
-                        passwd = value;
-                        break;
-                    case "Enhance":
-                        enhance = value;
-                        break;
-                }
+                Shared.Config = new Models.Config();
             }
-            return (mk, passwd, enhance);
+            try
+            {
+                Shared.Config = JsonConvert.DeserializeObject<Models.Config>(config);
+            }
+            catch (Exception e)
+            {
+                Shared.Config = new Models.Config();
+            }
+
+            Shared.Config.ValueChanged += () =>
+            {
+                SaveConfig("config.pc");
+            };
         }
 
-        public static void SaveConfig(string path, string mk, string passwd, string enhance)
+        
+
+        public static void SaveConfig(string path)
         {
-            IOHelper.WriteAllText(path, AesHelper.Encrypt(GetDeviceKey(), BuildConfigString(mk, passwd, enhance)));
+            var c = Shared.Config;
+            c.Clean();
+            IOHelper.WriteAllText(path, AesHelper.Encrypt(GetDeviceKey(), BuildConfigString(c)));
         }
     }
 }
