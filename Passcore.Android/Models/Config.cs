@@ -16,7 +16,7 @@
             set
             {
                 _masterKey = value;
-                if (IsStoreEnhance)
+                if (IsStoreMasterKey)
                     ValueChanged();
             }
         }
