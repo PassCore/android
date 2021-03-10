@@ -50,15 +50,6 @@ namespace Passcore.Android.Views
             SwtSaveIsCharRequired.CheckedChange += SwtSaveIsCharRequired_CheckedChange;
         }
 
-        private void ShowPassword(string pswd)
-        {
-            var a = new global::Android.App.AlertDialog.Builder(this).Create();
-            a.SetTitle(Resources.GetString(Resource.String.result));
-            a.SetMessage($"{pswd}");
-            a.SetButton(Resources.GetString(Resource.String.ok), (s, a) => { });
-            a.Show();
-        }
-
         private void SwtSaveIsCharRequired_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
             Shared.Config.IsStoreCharRequired = SwtSaveIsCharRequired.Checked;
