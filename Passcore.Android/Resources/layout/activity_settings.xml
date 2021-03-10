@@ -47,6 +47,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SwtSaveEnhance" />
+    <Switch
+        android:layout_marginLeft ="15dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/save_passwd_len"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SwtSavePasswordLength" />
+    <Switch
+        android:layout_marginLeft ="15dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/save_is_char_required"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SwtSaveIsCharRequired" />
     <TextView
         android:id="@+id/TxvVersion"
         android:layout_width="match_parent"

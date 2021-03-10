@@ -6,11 +6,7 @@
 
         public event ValueHandler ValueChanged = delegate { }; // { } can prevent NRE
 
-        private string _password, _enhance, _masterKey;
-        private bool _isStoreMasterKey = false,
-            _isStorePassword = false,
-            _isStoreEnhance = false;
-
+        private string _masterKey;
         public string MasterKey
         {
             get => _masterKey;
@@ -22,6 +18,7 @@
             }
         }
 
+        private string _password;
         public string Password
         {
             get => _password;
@@ -32,6 +29,8 @@
                     ValueChanged();
             }
         }
+
+        private string _enhance;
         public string Enhance
         {
             get => _enhance;
@@ -43,7 +42,7 @@
             }
         }
 
-
+        private bool _isStoreMasterKey = false;
         public bool IsStoreMasterKey
         {
             get => _isStoreMasterKey;
@@ -53,6 +52,8 @@
                 _isStoreMasterKey = value;
             }
         }
+
+        private bool _isStorePassword = false;
         public bool IsStorePassword
         {
             get => _isStorePassword;
@@ -62,12 +63,76 @@
                 ValueChanged();
             }
         }
+
+
+        private bool _isStoreEnhance = false;
         public bool IsStoreEnhance
         {
             get => _isStoreEnhance;
             set
             {
                 _isStoreEnhance = value;
+                ValueChanged();
+            }
+        }
+
+        private bool _isCharRequired = true;
+        public bool IsCharRequired
+        {
+            get => _isCharRequired;
+            set
+            {
+                _isCharRequired = value;
+                if (IsStoreCharRequired)
+                    ValueChanged();
+            }
+        }
+
+
+        private bool _isStoreCharRequired;
+        public bool IsStoreCharRequired
+        {
+            get => _isStoreCharRequired;
+            set
+            {
+                _isStoreCharRequired = value;
+                ValueChanged();
+            }
+        }
+
+        private bool _isWeakPasswd;
+        public bool IsWeakPasswd
+        {
+            get => _isWeakPasswd;
+            set
+            {
+                _isWeakPasswd = value;
+                if (IsStorePasswordLength)
+                    ValueChanged();
+            }
+        }
+
+
+        private int _passwordLengthIndex;
+        public int PasswordLengthIndex
+        {
+            get => _passwordLengthIndex;
+            set
+            {
+                _passwordLengthIndex = value;
+                if (IsStorePasswordLength)
+                    ValueChanged();
+            }
+        }
+
+
+        private bool _isStorePasswordLength;
+        public bool IsStorePasswordLength
+        {
+            get => _isStorePasswordLength;
+            set
+            {
+                _isStorePasswordLength = value;
                 ValueChanged();
             }
         }
@@ -80,6 +145,13 @@
                 MasterKey = null;
             if (!IsStorePassword)
                 Password = null;
+            if (!IsStorePasswordLength)
+            {
+                IsWeakPasswd = false;
+                PasswordLengthIndex = 0;
+            }
+            if (!IsStoreCharRequired)
+                IsCharRequired = true;
         }
     }
 }

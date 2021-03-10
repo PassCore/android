@@ -13,7 +13,9 @@ namespace Passcore.Android.Views
         Switch SwtBlockScreenshot,
                SwtSaveEnhance,
                SwtSavePassword,
-               SwtSaveMasterKey;
+               SwtSaveMasterKey,
+               SwtSavePasswordLength,
+               SwtSaveIsCharRequired;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -22,14 +24,19 @@ namespace Passcore.Android.Views
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
+            // TODO: Store it
             SwtBlockScreenshot = FindViewById<Switch>(Resource.Id.SwtBlockScreenshot);
             SwtSaveEnhance = FindViewById<Switch>(Resource.Id.SwtSaveEnhance);
             SwtSavePassword = FindViewById<Switch>(Resource.Id.SwtSavePassword);
             SwtSaveMasterKey = FindViewById<Switch>(Resource.Id.SwtSaveMasterKey);
+            SwtSavePasswordLength = FindViewById<Switch>(Resource.Id.SwtSavePasswordLength);
+            SwtSaveIsCharRequired = FindViewById<Switch>(Resource.Id.SwtSaveIsCharRequired);
 
             SwtSaveEnhance.Checked = Shared.Config.IsStoreEnhance;
             SwtSavePassword.Checked = Shared.Config.IsStorePassword;
             SwtSaveMasterKey.Checked = Shared.Config.IsStoreMasterKey;
+            SwtSavePasswordLength.Checked = Shared.Config.IsStorePasswordLength;
+            SwtSaveIsCharRequired.Checked = Shared.Config.IsStoreCharRequired;
 
             SwtBlockScreenshot.Checked = Shared.MainActivity != null ?
                 Shared.MainActivity.IsSecure :
@@ -39,7 +46,27 @@ namespace Passcore.Android.Views
             SwtSaveMasterKey.CheckedChange += SwtSaveMasterKey_CheckedChange;
             SwtSaveEnhance.CheckedChange += SwtSaveEnhance_CheckedChange;
             SwtSavePassword.CheckedChange += SwtSavePassword_CheckedChange;
+            SwtSavePasswordLength.CheckedChange += SwtSavePasswordLength_CheckedChange;
+            SwtSaveIsCharRequired.CheckedChange += SwtSaveIsCharRequired_CheckedChange;
+        }
 
+        private void ShowPassword(string pswd)
+        {
+            var a = new global::Android.App.AlertDialog.Builder(this).Create();
+            a.SetTitle(Resources.GetString(Resource.String.result));
+            a.SetMessage($"{pswd}");
+            a.SetButton(Resources.GetString(Resource.String.ok), (s, a) => { });
+            a.Show();
+        }
+
+        private void SwtSaveIsCharRequired_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            Shared.Config.IsStoreCharRequired = SwtSaveIsCharRequired.Checked;
+        }
+
+        private void SwtSavePasswordLength_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            Shared.Config.IsStorePasswordLength = SwtSavePasswordLength.Checked;
         }
 
         private void SwtSavePassword_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)

@@ -76,12 +76,16 @@ namespace Passcore.Android.Views
             EdtMasterKey.Text = Shared.Config.MasterKey;
             EdtPassword.Text = Shared.Config.Password;
             EdtEnhanceField.Text = Shared.Config.Enhance;
+            ChkIsWeakPasswd.Checked = Shared.Config.IsWeakPasswd;
+            CkbIsCharRequired.Checked = Shared.Config.IsCharRequired;
+            SkbLength.Progress = Shared.Config.PasswordLengthIndex; // FIXME: DOES NOT WORK!
             #endregion
 
             #region Evt
             SkbLength.ProgressChanged += SkbLength_ProgressChanged;
 
             ChkIsWeakPasswd.CheckedChange += ChkIsWeakPasswd_CheckedChange;
+            CkbIsCharRequired.CheckedChange += CkbIsCharRequired_CheckedChange;
 
             BtnClear.Click += BtnClear_Click;
             BtnGenerate.Click += BtnGenerate_Click;
@@ -91,7 +95,13 @@ namespace Passcore.Android.Views
             EdtEnhanceField.AfterTextChanged += EdtEnhanceField_AfterTextChanged;
             EdtMasterKey.AfterTextChanged += EdtMasterKey_AfterTextChanged;
             EdtPassword.AfterTextChanged += EdtPassword_AfterTextChanged;
+
             #endregion
+        }
+
+        private void CkbIsCharRequired_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            Shared.Config.IsCharRequired = CkbIsCharRequired.Checked;
         }
 
         private void EdtPassword_AfterTextChanged(object sender, global::Android.Text.AfterTextChangedEventArgs e)
@@ -122,12 +132,14 @@ namespace Passcore.Android.Views
 
         private void ChkIsWeakPasswd_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
+            Shared.Config.IsWeakPasswd = ChkIsWeakPasswd.Checked;
             SetSeekBar();
         }
 
         private void SetSeekBar()
         {
             SkbLength.Max = PasswordLengthHelper.GetMax(ChkIsWeakPasswd.Checked);
+            Shared.Config.PasswordLengthIndex = SkbLength.Progress; // FIXME: Is necessary?
         }
 
         private GenerateMode GetGenerateMode()
@@ -150,7 +162,10 @@ namespace Passcore.Android.Views
         }
 
         private void SkbLength_ProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
-            => FlashTxvPasswdLength();
+        {
+            FlashTxvPasswdLength();
+            Shared.Config.PasswordLengthIndex = SkbLength.Progress;
+        }
 
         private void FlashTxvPasswdLength()
             => TxvPasswdLength.Text = $"Password Length: {PasswdLength}";

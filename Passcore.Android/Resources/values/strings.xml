@@ -35,6 +35,9 @@
   <string name="save_masterkey">Save Master Key</string>
   <string name="save_passwd">Save Password</string>
   <string name="save_enhance">Save Enhance Field</string>
+  <string name="save_passwd_len">Save Password Length</string>
+  <string name="save_is_char_required">Save Is Char Required</string>
+
   <string name="convenience">Convenience</string>
 
 </resources>
