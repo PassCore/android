@@ -31,7 +31,7 @@ namespace Passcore.Android.Views
         SeekBar SkbLength;
 
         TextView TxvPasswdLength,
-            TxvVersion;
+                 TxvVersion;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -41,8 +41,6 @@ namespace Passcore.Android.Views
             SetContentView(Resource.Layout.activity_main);
 
             Shared.MainActivity = this;
-
-            ConfigHelper.ParseConfigString(ConfigHelper.GetConfigString());
 
             #region Components Define
             BtnClear = FindViewById<Button>(Resource.Id.BtnClean);
@@ -66,21 +64,23 @@ namespace Passcore.Android.Views
             #endregion
 
             #region initialise UI value 
-            SetSeekBar();
 
             TxvVersion.Text = $"{ProjectInfo.AppName}({ProjectInfo.AppVersion})\n" +
                 $"{Copyright}";
 
-            FlashTxvPasswdLength();
+            ConfigHelper.ParseConfigString(ConfigHelper.GetConfigString());
 
             EdtMasterKey.Text = Shared.Config.MasterKey;
             EdtPassword.Text = Shared.Config.Password;
             EdtEnhanceField.Text = Shared.Config.Enhance;
             ChkIsWeakPasswd.Checked = Shared.Config.IsWeakPasswd;
             CkbIsCharRequired.Checked = Shared.Config.IsCharRequired;
-            SkbLength.Progress = Shared.Config.PasswordLengthIndex; // FIXME: DOES NOT WORK!
+            SkbLength.Max = Helper.PasswordLengthHelper.GetMax(Shared.Config.IsWeakPasswd);
+            SkbLength.Progress = Shared.Config.PasswordLengthIndex;
             #endregion
 
+            FlashTxvPasswdLength();
+            
             #region Evt
             SkbLength.ProgressChanged += SkbLength_ProgressChanged;
 
