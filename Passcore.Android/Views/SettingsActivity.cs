@@ -57,12 +57,12 @@ namespace Passcore.Android.Views
             var a = new global::Android.App.AlertDialog.Builder(this).Create();
             a.SetTitle(Resources.GetString(Resource.String.caution));
             a.SetMessage(Resources.GetString(Resource.String.reset_all_warn));
-            a.SetButton(Resources.GetString(Resource.String.ok), (s, a) =>
+            a.SetButton(Resources.GetString(Resource.String.ok), (s, d) =>
             {
                 File.Delete(Path.Combine(IOHelper.GetDataPath(), "config.pc"));
                 System.Environment.Exit(0);
             });
-            a.SetButton2(Resources.GetString(Resource.String.cancel), (s, a) => { });
+            a.SetButton2(Resources.GetString(Resource.String.cancel), (s, d) => { });
             a.Show();
         }
 

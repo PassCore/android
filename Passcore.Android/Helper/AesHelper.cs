@@ -10,13 +10,13 @@ namespace Passcore.Android.Helper
         private static byte[] GetKey(string pwd)
             => Sha256Helper.Compute(pwd);
 
-        public static byte[] AES_IV = Encoding.UTF8.GetBytes("0000000000000000");
+        public static byte[] Iv = Encoding.UTF8.GetBytes("0000000000000000");
 
         public static string Encrypt(string pwd, string data)
         {
             using AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider();
             aesAlg.Key = GetKey(pwd);
-            aesAlg.IV = AES_IV;
+            aesAlg.IV = Iv;
             ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
             using MemoryStream msEncrypt = new MemoryStream();
             using CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write);
@@ -35,7 +35,7 @@ namespace Passcore.Android.Helper
             using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
             {
                 aesAlg.Key = GetKey(pwd);
-                aesAlg.IV = AES_IV;
+                aesAlg.IV = Iv;
 
                 ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
                 using MemoryStream msEncrypt = new MemoryStream(inputBytes);

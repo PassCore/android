@@ -75,7 +75,7 @@ namespace Passcore.Android.Views
             EdtEnhanceField.Text = Shared.Config.Enhance;
             ChkIsWeakPasswd.Checked = Shared.Config.IsWeakPasswd;
             CkbIsCharRequired.Checked = Shared.Config.IsCharRequired;
-            SkbLength.Max = Helper.PasswordLengthHelper.GetMax(Shared.Config.IsWeakPasswd);
+            SkbLength.Max = PasswordLengthHelper.GetMax(Shared.Config.IsWeakPasswd);
             SkbLength.Progress = Shared.Config.PasswordLengthIndex;
             #endregion
 
@@ -192,9 +192,9 @@ namespace Passcore.Android.Views
         {
             var a = new global::Android.App.AlertDialog.Builder(this).Create();
             a.SetTitle(Resources.GetString(Resource.String.result));
-            a.SetMessage($"{pswd}\n\nStrength: {PasswordStrengthCheck.GetPasswdStrength(pswd)}");
-            a.SetButton(Resources.GetString(Resource.String.ok), (s, a) => { });
-            a.SetButton2(Resources.GetString(Resource.String.copy_to_clipboard), async (s, a) =>
+            a.SetMessage($"{pswd}\n\nStrength: {PasswordStrengthCheck.GetPasswdStrength(pswd).ToString()}");
+            a.SetButton(Resources.GetString(Resource.String.ok), (o, e) => { });
+            a.SetButton2(Resources.GetString(Resource.String.copy_to_clipboard), async (o, e) =>
             {
                 await Clipboard.SetTextAsync(pswd);
             });
@@ -249,7 +249,7 @@ namespace Passcore.Android.Views
 
         public string Copyright
         {
-            get => Resources.GetString(Resource.String.copyright);
+            get => Resources?.GetString(Resource.String.copyright);
         }
 
         public int PasswdLength
@@ -257,7 +257,7 @@ namespace Passcore.Android.Views
             get => PasswordLengthHelper.GetLength(SkbLength.Progress, ChkIsWeakPasswd.Checked);
         }
 
-        private bool _isSecure = false;
+        private bool _isSecure;
         public bool IsSecure
         {
             get => _isSecure;

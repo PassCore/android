@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <TextView
-        android:id="@+id/TxvSecurity" 
+        android:id="@+id/TxvSecurity"
         android:text="@string/security"
         android:layout_marginTop="15dp"
         android:layout_marginLeft ="15dp"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/SwtBlockScreenshot" />
     <TextView
-        android:id="@+id/TxvConvenience" 
+        android:id="@+id/TxvConvenience"
         android:text="@string/convenience"
         android:layout_marginTop="15dp"
         android:layout_marginLeft ="15dp"
@@ -61,11 +61,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SwtSaveIsCharRequired" />
+    <Button
+        android:id="@+id/BtnResetAll"
+        android:text="@string/reset_all"
+        android:textStyle="bold"
+        android:layout_marginLeft ="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/TxvVersion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center | bottom"
-        android:layout_marginBottom="10dp"
-    />
+        android:layout_marginBottom="10dp"/>
+
 </LinearLayout>

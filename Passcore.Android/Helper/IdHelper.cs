@@ -19,7 +19,7 @@ namespace Passcore.Android.Helper
             }
             catch (Exception ex)
             {
-                Log.Error("Passcore/IdHelper", $"Fail to Get device UID!\n{ex.ToString()}");
+                Log.Error("Passcore/IdHelper", $"Fail to Get device UID!\n{ex}");
                 return ("", ex);
             }
         }

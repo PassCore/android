@@ -14,7 +14,7 @@ namespace Passcore.Android.Helper
         {
             var m = IdHelper.GetUID();
             if (m.Item2 != null)
-                Log.Error("Passcore/DeviceKey", $"Failed to get device UID.\n{m.Item2.ToString()}");
+                Log.Error("Passcore/DeviceKey", $"Failed to get device UID.\n{m.Item2}");
             return IdHelper.GetUID().Item1;
         }
 
@@ -39,7 +39,7 @@ namespace Passcore.Android.Helper
             }
             catch (Exception ex)
             {
-                Log.Info("Passcore/DeviceKey", $"Failed to GetConfigString()\n{ex.ToString()}");
+                Log.Info("Passcore/DeviceKey", $"Failed to GetConfigString()\n{ex}");
                 return "";
             }
         }
@@ -59,7 +59,7 @@ namespace Passcore.Android.Helper
             }
             catch (Exception ex)
             {
-                Log.Info("Passcore/Config", $"Failed to ParseConfigString()\n{ex.ToString()}");
+                Log.Info("Passcore/Config", $"Failed to ParseConfigString()\n{ex}");
             }
             finally
             {

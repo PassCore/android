@@ -37,7 +37,10 @@
   <string name="save_enhance">Save Enhance Field</string>
   <string name="save_passwd_len">Save Password Length</string>
   <string name="save_is_char_required">Save Is Char Required</string>
-
+  <string name="reset_all">Reset All</string>
+  <string name="caution">Caution</string>
+  <string name="reset_all_warn">This operation will clean all things of PassCore and cannot be undone! If you confirm, click yes, PassCore will clean itself and will exit after done all.</string>
   <string name="convenience">Convenience</string>
+  <string name="cancel">Cancel</string>
 
 </resources>

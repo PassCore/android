@@ -42,7 +42,7 @@
             }
         }
 
-        private bool _isStoreMasterKey = false;
+        private bool _isStoreMasterKey;
         public bool IsStoreMasterKey
         {
             get => _isStoreMasterKey;
@@ -53,7 +53,7 @@
             }
         }
 
-        private bool _isStorePassword = false;
+        private bool _isStorePassword;
         public bool IsStorePassword
         {
             get => _isStorePassword;
@@ -65,7 +65,7 @@
         }
 
 
-        private bool _isStoreEnhance = false;
+        private bool _isStoreEnhance;
         public bool IsStoreEnhance
         {
             get => _isStoreEnhance;
